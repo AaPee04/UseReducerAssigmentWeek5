@@ -5,9 +5,10 @@ import { Todo } from '../types/Todo';
 type Props = {
   item: Todo;
   onToggle: (id: string) => void;
+  onRemove: (id: string) => void;
 };
 
-export default function TodoItem({ item, onToggle }: Props) {
+export default function TodoItem({ item, onToggle, onRemove }: Props) {
   const [textWidth, setTextWidth] = useState<number>(0);
 
   function onTextLayout(e: LayoutChangeEvent) {
@@ -15,6 +16,7 @@ export default function TodoItem({ item, onToggle }: Props) {
   }
 
   return (
+    <View style={styles.row}>
     <Pressable onPress={() => onToggle(item.id)} style={styles.pressable}>
       <View style={styles.textWrapper}>
         <Text
@@ -34,10 +36,22 @@ export default function TodoItem({ item, onToggle }: Props) {
         )}
       </View>
     </Pressable>
+    <Pressable
+    onPress={() => onRemove(item.id)}
+    style={styles.removeButton}
+    >
+      <Text style={styles.removeText}>❌</Text>
+    </Pressable>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
+  row: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingVertical: 8,
+  },
   pressable: {
     paddingVertical: 8,
   },
@@ -55,5 +69,11 @@ const styles = StyleSheet.create({
     top: '50%',
     height: 2,
     backgroundColor: '#000',
+  },
+  removeButton: {
+    paddingHorizontal: 6,
+  },
+  removeText: {
+    fontSize: 18,
   },
 });

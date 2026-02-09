@@ -23,7 +23,7 @@ export default function TodoInput({ onAdd }: Props) {
           onChangeText={setText}
           style={styles.input}
         />
-        <Button title="Save" onPress={handleSave} />
+        <Button title="Add" onPress={handleSave} />
       </View>
     </View>
   );
