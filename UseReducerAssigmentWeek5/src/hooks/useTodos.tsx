@@ -1,7 +1,7 @@
 import { useReducer } from "react";
 import { Todo } from "../types/Todo";
 
-type Action = // Typien asetus
+type Action = // Tyyppien asetus
   | { type: 'ADD_TODO'; payload: string }
   | { type: 'TOGGLE_TODO'; payload: string }
   | { type: 'REMOVE_TODO'; payload: string };
