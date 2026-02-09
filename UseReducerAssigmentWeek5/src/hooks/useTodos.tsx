@@ -1,12 +1,12 @@
 import { useReducer } from "react";
 import { Todo } from "../types/Todo";
 
-type Action =
+type Action = // Typien asetus
   | { type: 'ADD_TODO'; payload: string }
   | { type: 'TOGGLE_TODO'; payload: string }
   | { type: 'REMOVE_TODO'; payload: string };
 
-function todosReducer(state: Todo[], action: Action): Todo[] {
+function todosReducer(state: Todo[], action: Action): Todo[] { // Switch Casien teko, logiikkaa varten
     switch (action.type) {
         case 'ADD_TODO':
             return [
@@ -31,21 +31,22 @@ function todosReducer(state: Todo[], action: Action): Todo[] {
     }
 }
 
-export function useTodos () {
+export function useTodos () { // useReducerin käyttö
     const [ todos, dispatch ] = useReducer(todosReducer, [])
     
-    function addTodo (text: string) {
+    function addTodo (text: string) { // Lisäys funktio
         dispatch({ type: 'ADD_TODO', payload: text});
         console.log("Adding task")
     }
 
-    function toggleTodo (id: string) {
+    function toggleTodo (id: string) { // Tehdyksi tekemättömäksi funktio
         dispatch({ type: 'TOGGLE_TODO', payload: id});
         console.log("Toggling task")
     }
 
-    function removeTodo (id: string) {
+    function removeTodo (id: string) { // Poisto funktio
         dispatch({ type: 'REMOVE_TODO', payload: id});
+        console.log("Removing task")
     }
 
     return {
